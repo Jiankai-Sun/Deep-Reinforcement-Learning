@@ -1,6 +1,6 @@
 """
-The double DQN based on this paper: https://arxiv.org/abs/1509.06461
-Reference: https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/5.1_Double_DQN/RL_brain.py
+The DQN improvement: Prioritized Experience Replay (based on https://arxiv.org/abs/1511.05952)
+View more on my tutorial page: https://morvanzhou.github.io/tutorials/
 
 Using:
 Tensorflow: 1.1.0
@@ -11,6 +11,15 @@ import tensorflow as tf
 
 np.random.seed(1)
 tf.set_random_seed(1)
+
+class SumTree(object):
+    """
+    This SumTree code is modified version and the original code is from: 
+    https://github.com/jaara/AI-blog/blob/master/SumTree.py
+    
+    Story the data with it priority in tree and data frameworks.
+    """
+    
 
 class DoubleDQN:
     def __init__(
@@ -106,7 +115,7 @@ class DoubleDQN:
 
         # replace the old memory with new memory
         index = self.memory_counter % self.memory_size
-        self.memory[index,:] = transition
+        self.memeory[index,:] = transition
 
         self.memory_counter += 1
 
@@ -115,7 +124,7 @@ class DoubleDQN:
         observation = observation[np.newaxis, :]
 
         actions_value = self.sess.run(self.q_eval, feed_dict={self.s:observation})
-        action = np.argmax(actions_value)
+        action = np.argmax(action_value)
 
         if not hasattr(self, 'q'): # record action value it gets
             self.q = []
