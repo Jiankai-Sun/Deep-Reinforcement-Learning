@@ -88,6 +88,7 @@ def make_gif(images, fname, duration=2, true_image=False, salience=False, salIMA
         except:
             x = salIMAGS[-1]
         return x
+
     clip = mpy.VideoClip(make_frame, duration=duration)
     if salience == True:
         mask = mpy.VideoClip(make_mask, ismask=True, duration=duration)
