@@ -9,5 +9,5 @@ moviepy >= 0.2.3.2
 
 ### TensorBoard Scalars:
 ![Losses1](imgs/Losses.png)
-![Losses2](imgs/Losses.png)
+![Losses2](imgs/Losses2.png)
 ![Perf](imgs/Perf.png)
